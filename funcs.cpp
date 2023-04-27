@@ -61,34 +61,29 @@ void box(int image[MAX_H][MAX_W], int &h, int &w){
 
 }
 
+
 /*
 Task D:
 Program frame.cpp. Same as the previous task, but it should be a frame exactly one pixel thick.
 */
 void frame(int image[MAX_H][MAX_W], int &h, int &w){
-
   int result[MAX_H][MAX_W];
 
   for(int row = 0; row < h; row++){
     for(int col = 0; col < w; col++){
-      result[row][col] = image[row][col]; //keeping the same colors
+      if( row >= (h/4) && row <= (h*3/4) && (col >= w/4) && (col <= (w*3)/4) &&  (row == h/4 || row == h*3/4 || col == w/4 || col == w*3/4) ){
+        result[row][col] = 255; //convert to white
+      }
+      else
+      {
+        result[row][col] = image[row][col]; 
+      }
     }
   }
-
-  //invert colors to white for the frame
-  for(int row = h/4; row < h-h/4; row++){ 
-    result[row][w/4] = 255;
-    result[row][w-w/4] = 255;
-  }
-
-  //invert colors to white for the frame
-  for(int col = w/4; col < w-w/4; col++){ 
-    result[h/4][col] = 255;
-    result[h-h/4][col] = 255;
-  }
-
   writeImage("taskD.pgm", result, h, w);
+  
 }
+
 
 /*
 Task E:
