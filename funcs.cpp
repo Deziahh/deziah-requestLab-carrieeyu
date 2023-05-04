@@ -68,6 +68,7 @@ Program frame.cpp. Same as the previous task, but it should be a frame exactly o
 */
 void frame(int image[MAX_H][MAX_W], int &h, int &w){
   int framed_image[MAX_H][MAX_W];
+  int result[MAX_H][MAX_W];
 
   for(int row = 0; row < h; row++){
     for(int col = 0; col < w; col++){
@@ -81,6 +82,15 @@ void frame(int image[MAX_H][MAX_W], int &h, int &w){
     }
   }
   writeImage("taskD.pgm", framed_image, h, w);
+        result[row][col] = 255; //convert to white
+      }
+      else
+      {
+        result[row][col] = image[row][col]; 
+      }
+    }
+  }
+  writeImage("taskD.pgm", result, h, w);
   
 }
 
